@@ -1,0 +1,22 @@
+{
+  "name": "Jane Doe",
+  "phone": "123-456-7890",
+  "email": "jane@example.com",
+  "city": "Singapore",
+  "targetJob": "Office Assistant",
+  "school": {
+    "name": "National University of Singapore",
+    "degree": "Diploma in Business",
+    "graduation": "May 2025"
+  },
+  "computerSkills": ["Word", "Excel"],
+  "languages": ["English", "Tamil"],
+  "otherSkills": ["Customer service", "Teamwork"],
+  "projects": [
+    {
+      "title": "Marketing Project",
+      "description": "Made posters and social media posts"
+    }
+  ],
+  "hobbies": ["Football team", "Volunteering"]
+}
