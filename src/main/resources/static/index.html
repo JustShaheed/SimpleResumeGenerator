@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Simple Resume Generator</title>
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
@@ -14,33 +13,28 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <label class="block">
         <span class="text-gray-700">Name</span>
-        <input name="name" required
-               class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+        <input name="name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
       </label>
       <label class="block">
         <span class="text-gray-700">Phone</span>
-        <input name="phone" required
-               class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+        <input name="phone" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
       </label>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <label class="block">
         <span class="text-gray-700">Email</span>
-        <input type="email" name="email" required
-               class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+        <input type="email" name="email" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
       </label>
       <label class="block">
         <span class="text-gray-700">City</span>
-        <input name="city" required
-               class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+        <input name="city" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
       </label>
     </div>
 
     <label class="block">
       <span class="text-gray-700">Target Job</span>
-      <input name="targetJob" required
-             class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+      <input name="targetJob" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
     </label>
 
     <fieldset class="border border-gray-200 rounded-lg p-4">
@@ -48,18 +42,15 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
         <label class="block">
           <span class="text-gray-700">School Name</span>
-          <input name="school.name" required
-                 class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+          <input name="school.name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
         </label>
         <label class="block">
           <span class="text-gray-700">Degree</span>
-          <input name="school.degree" required
-                 class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+          <input name="school.degree" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
         </label>
         <label class="block sm:col-span-2">
           <span class="text-gray-700">Graduation (e.g. May 2025)</span>
-          <input name="school.graduation" required
-                 class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+          <input name="school.graduation" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
         </label>
       </div>
     </fieldset>
@@ -67,40 +58,29 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <label class="block">
         <span class="text-gray-700">Computer Skills</span>
-        <input name="computerSkills"
-               placeholder="Word, Excel"
-               class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+        <input name="computerSkills" placeholder="Word, Excel" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
       </label>
       <label class="block">
         <span class="text-gray-700">Languages</span>
-        <input name="languages"
-               placeholder="English, Tamil"
-               class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+        <input name="languages" placeholder="English, Tamil" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
       </label>
       <label class="block">
         <span class="text-gray-700">Other Skills</span>
-        <input name="otherSkills"
-               placeholder="Customer service, Teamwork"
-               class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+        <input name="otherSkills" placeholder="Customer service, Teamwork" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
       </label>
     </div>
 
     <label class="block">
       <span class="text-gray-700">Projects (JSON array)</span>
-      <textarea name="projects" rows="3"
-                placeholder='[{"title":"X","description":"Y"}]'
-                class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+      <textarea name="projects" rows="3" placeholder='[{"title":"X","description":"Y"}]' class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
     </label>
 
     <label class="block">
       <span class="text-gray-700">Hobbies (comma-separated)</span>
-      <input name="hobbies"
-             placeholder="Football, Volunteering"
-             class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"/>
+      <input name="hobbies" placeholder="Football, Volunteering" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
     </label>
 
-    <button type="submit"
-            class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">
+    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">
       Generate Word
     </button>
   </form>
@@ -122,14 +102,13 @@
         degree: form['school.degree'].value,
         graduation: form['school.graduation'].value
       },
-      computerSkills: form.computerSkills.value.split(',').map(s=>s.trim()).filter(s=>s),
-      languages: form.languages.value.split(',').map(s=>s.trim()).filter(s=>s),
-      otherSkills: form.otherSkills.value.split(',').map(s=>s.trim()).filter(s=>s),
+      computerSkills: form.computerSkills.value.split(',').map(s => s.trim()).filter(Boolean),
+      languages: form.languages.value.split(',').map(s => s.trim()).filter(Boolean),
+      otherSkills: form.otherSkills.value.split(',').map(s => s.trim()).filter(Boolean),
       projects: (() => {
-        try { return JSON.parse(form.projects.value || '[]'); }
-        catch { return []; }
+        try { return JSON.parse(form.projects.value || '[]'); } catch { return []; }
       })(),
-      hobbies: form.hobbies.value.split(',').map(s=>s.trim()).filter(s=>s)
+      hobbies: form.hobbies.value.split(',').map(s => s.trim()).filter(Boolean)
     };
 
     const resp = await fetch('/api/resume/docx', {
@@ -138,14 +117,12 @@
       body: JSON.stringify(payload)
     });
 
-    if (!resp.ok) {
-      return alert('Error generating resume');
-    }
+    if (!resp.ok) return alert('Error generating resume');
 
     const blob = await resp.blob();
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href     = url;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
     a.download = 'resume.docx';
     a.click();
     URL.revokeObjectURL(url);
