@@ -1,12 +1,12 @@
 {
-  "name": "Jane Doe",
+  "name": "Shaheed Abdillah",
   "phone": "123-456-7890",
-  "email": "jane@example.com",
+  "email": "shaheed@example.com",
   "city": "Singapore",
   "targetJob": "Office Assistant",
   "school": {
-    "name": "National University of Singapore",
-    "degree": "Diploma in Business",
+    "name": "Kaplan",
+    "degree": "Diploma in IT",
     "graduation": "May 2025"
   },
   "computerSkills": ["Word", "Excel"],
@@ -14,9 +14,9 @@
   "otherSkills": ["Customer service", "Teamwork"],
   "projects": [
     {
-      "title": "Marketing Project",
-      "description": "Made posters and social media posts"
+      "title": "Software Dev",
+      "description": "Made applications and websites"
     }
   ],
-  "hobbies": ["Football team", "Volunteering"]
+  "hobbies": ["Boxing", "Volunteering"]
 }
