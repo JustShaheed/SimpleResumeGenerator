@@ -3,7 +3,7 @@
   "phone": "123-456-7890",
   "email": "shaheed@example.com",
   "city": "Singapore",
-  "targetJob": "Office Assistant",
+  "targetJob": "Software Developer",
   "school": {
     "name": "Kaplan",
     "degree": "Diploma in IT",
@@ -14,8 +14,8 @@
   "otherSkills": ["Customer service", "Teamwork"],
   "projects": [
     {
-      "title": "Software Dev",
-      "description": "Made applications and websites"
+      "title": "Simple Resume Generator",
+      "description": "Made a web application which exports a generated resume based on user input"
     }
   ],
   "hobbies": ["Boxing", "Volunteering"]
