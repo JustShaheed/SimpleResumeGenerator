@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,71 +14,72 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <label class="block">
         <span class="text-gray-700">Name</span>
-        <input name="name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input name="name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
       </label>
       <label class="block">
         <span class="text-gray-700">Phone</span>
-        <input name="phone" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input name="phone" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
       </label>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <label class="block">
         <span class="text-gray-700">Email</span>
-        <input type="email" name="email" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input type="email" name="email" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
       </label>
       <label class="block">
         <span class="text-gray-700">City</span>
-        <input name="city" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
+        <input name="city" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
       </label>
     </div>
 
     <label class="block">
       <span class="text-gray-700">Target Job</span>
-      <input name="targetJob" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
+      <input name="targetJob" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
     </label>
+
 
     <fieldset class="border border-gray-200 rounded-lg p-4">
       <legend class="text-gray-700 font-semibold">School Info</legend>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-        <label class="block">
-          <span class="text-gray-700">School Name</span>
-          <input name="school.name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
-        </label>
-        <label class="block">
-          <span class="text-gray-700">Degree</span>
-          <input name="school.degree" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
-        </label>
-        <label class="block sm:col-span-2">
-          <span class="text-gray-700">Graduation (e.g. May 2025)</span>
-          <input name="school.graduation" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
-        </label>
+      <div id="schoolsContainer">
+        <div class="school-entry space-y-2 border border-gray-300 rounded-lg p-4 mt-2">
+          <label class="block">
+            <span class="text-gray-700">School Name</span>
+            <input name="school[0].name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+          </label>
+          <label class="block">
+            <span class="text-gray-700">Degree</span>
+            <input name="school[0].degree" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+          </label>
+          <label class="block">
+            <span class="text-gray-700">Graduation</span>
+            <input name="school[0].graduation" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+          </label>
+        </div>
       </div>
+      <button type="button" id="addSchool" class="bg-green-600 text-white px-4 py-1 rounded mt-2">Add School</button>
     </fieldset>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <label class="block">
-        <span class="text-gray-700">Computer Skills</span>
-        <input name="computerSkills" placeholder="Word, Excel" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
-      </label>
-      <label class="block">
-        <span class="text-gray-700">Languages</span>
-        <input name="languages" placeholder="English, Tamil" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
-      </label>
-      <label class="block">
-        <span class="text-gray-700">Other Skills</span>
-        <input name="otherSkills" placeholder="Customer service, Teamwork" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500" />
-      </label>
-    </div>
-
     <label class="block">
+      <span class="text-gray-700">Skills (comma-separated)</span>
+      <input name="skills" placeholder="Communication, Teamwork, Excel" class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
+    </label>
+
+
+    <div class="block">
+      <span class="text-gray-700 font-semibold">Projects</span>
+      <div id="projectsContainer" class="space-y-4 mt-2"></div>
+      <button type="button" id="addProject" class="bg-green-600 text-white px-4 py-1 rounded mt-2">Add Project</button>
+    </div>
+    <label class="block hidden">
       <span class="text-gray-700">Projects (JSON array)</span>
+
       <textarea name="projects" rows="3" placeholder='[{"title":"X","description":"Y"}]' class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
     </label>
 
     <label class="block">
       <span class="text-gray-700">Hobbies (comma-separated)</span>
-      <input name="hobbies" placeholder="Football, Volunteering" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+      <input name="hobbies" placeholder="Football, Volunteering" class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
     </label>
 
     <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">
@@ -91,23 +93,36 @@
     e.preventDefault();
     const form = e.target;
 
+    // Extract schools
+    const schools = [];
+    document.querySelectorAll('.school-entry').forEach(entry => {
+      const name = entry.querySelector('input[name*="name"]').value;
+      const degree = entry.querySelector('input[name*="degree"]').value;
+      const graduation = entry.querySelector('input[name*="graduation"]').value;
+      if (name && degree && graduation) {
+        schools.push({ name, degree, graduation });
+      }
+    });
+
+    // Extract projects
+    const projects = [];
+    document.querySelectorAll('.project-entry').forEach(entry => {
+      const title = entry.querySelector('input[name*="title"]').value;
+      const description = entry.querySelector('textarea[name*="description"]').value;
+      if (title && description) {
+        projects.push({ title, description });
+      }
+    });
+
     const payload = {
       name: form.name.value,
       phone: form.phone.value,
       email: form.email.value,
       city: form.city.value,
       targetJob: form.targetJob.value,
-      school: {
-        name: form['school.name'].value,
-        degree: form['school.degree'].value,
-        graduation: form['school.graduation'].value
-      },
-      computerSkills: form.computerSkills.value.split(',').map(s => s.trim()).filter(Boolean),
-      languages: form.languages.value.split(',').map(s => s.trim()).filter(Boolean),
-      otherSkills: form.otherSkills.value.split(',').map(s => s.trim()).filter(Boolean),
-      projects: (() => {
-        try { return JSON.parse(form.projects.value || '[]'); } catch { return []; }
-      })(),
+      school: schools,  // <-- fixed from `schools`
+      skills: form.skills.value.split(',').map(s => s.trim()).filter(Boolean),
+      projects,
       hobbies: form.hobbies.value.split(',').map(s => s.trim()).filter(Boolean)
     };
 
@@ -117,7 +132,9 @@
       body: JSON.stringify(payload)
     });
 
-    if (!resp.ok) return alert('Error generating resume');
+    if (!resp.ok) {
+      return alert('Error generating resume');
+    }
 
     const blob = await resp.blob();
     const url = URL.createObjectURL(blob);
@@ -128,5 +145,79 @@
     URL.revokeObjectURL(url);
   });
 </script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    function createSchoolFieldSet(index) {
+      const div = document.createElement('div');
+      div.className = 'school-entry space-y-2 border border-gray-300 rounded-lg p-4 mt-2';
+      div.innerHTML = `
+      <label class="block">
+        <span class="text-gray-700">School Name</span>
+        <input name="school[${index}].name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+      </label>
+      <label class="block">
+        <span class="text-gray-700">Degree</span>
+        <input name="school[${index}].degree" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+      </label>
+      <label class="block">
+        <span class="text-gray-700">Graduation</span>
+        <input name="school[${index}].graduation" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+      </label>
+      <button type="button" class="remove-school bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+    `;
+      return div;
+    }
+
+    function createProjectFieldSet() {
+      const div = document.createElement('div');
+      div.className = 'project-entry space-y-2 border border-gray-300 rounded-lg p-4 mt-2';
+      div.innerHTML = `
+      <label class="block">
+        <span class="text-gray-700">Project Title</span>
+        <input name="projects[].title" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+      </label>
+      <label class="block">
+        <span class="text-gray-700">Description</span>
+        <textarea name="projects[].description" rows="2" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
+      </label>
+      <button type="button" class="remove-project bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+    `;
+      return div;
+    }
+
+    const schoolsContainer = document.getElementById('schoolsContainer');
+    const addSchoolBtn = document.getElementById('addSchool');
+
+    let schoolCount = 1;
+
+    addSchoolBtn.addEventListener('click', () => {
+      const entry = createSchoolFieldSet(schoolCount++);
+      schoolsContainer.appendChild(entry);
+    });
+
+    schoolsContainer.addEventListener('click', e => {
+      if (e.target.classList.contains('remove-school')) {
+        e.target.closest('.school-entry').remove();
+      }
+    });
+
+    const projectsContainer = document.getElementById('projectsContainer');
+    const addProjectBtn = document.getElementById('addProject');
+
+    addProjectBtn.addEventListener('click', () => {
+      const entry = createProjectFieldSet();
+      projectsContainer.appendChild(entry);
+    });
+
+    projectsContainer.addEventListener('click', e => {
+      if (e.target.classList.contains('remove-project')) {
+        e.target.closest('.project-entry').remove();
+      }
+    });
+  });
+</script>
+
 </body>
 </html>

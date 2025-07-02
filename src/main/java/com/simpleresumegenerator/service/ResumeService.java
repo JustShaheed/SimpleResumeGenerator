@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 @Service
 public class ResumeService {
@@ -26,45 +25,45 @@ public class ResumeService {
         run.setFontSize(11);
         run.setText(req.phone + " | " + req.email + " | " + req.city);
 
-        // 2. Objective / Target Job
+        // 2. Objective
         XWPFParagraph obj = doc.createParagraph();
         obj.setSpacingBefore(200);
         XWPFRun objRun = obj.createRun();
         objRun.setItalic(true);
         objRun.setText("Objective: " + req.targetJob);
 
-        // 3. Education section
+        // 3. Education
         addSectionTitle(doc, "EDUCATION");
-        addIndentedText(doc, String.format("%s, %s (%s)",
-                req.school.name,
-                req.school.degree,
-                req.school.graduation
-        ));
+        if (req.school != null) {
+            for (ResumeRequest.School s : req.school) {
+                addIndentedText(doc, String.format("%s, %s (%s)", s.name, s.degree, s.graduation));
+            }
+        }
 
-        // 4. Skills categories
+        // 4. Skills
         addSectionTitle(doc, "SKILLS");
-        addIndentedText(doc, "Languages: " + String.join(", ", req.languages));
-        addIndentedText(doc, "Frameworks & Tools: Flask, Spring Boot, OpenPyXL, Selenium, Tkinter, PyQt");
-        addIndentedText(doc, "Cloud & DevOps: AWS (EC2, S3, IAM – basic), Docker, Git, GitHub Actions, Terraform (basic), Linux");
-        addIndentedText(doc, "Databases: MySQL, MariaDB, SQL Server, PostgreSQL (Basic)");
-        addIndentedText(doc, "Monitoring & IT Support: ServiceNow, SolarWinds, Server Monitoring");
+        if (req.skills != null && !req.skills.isEmpty()) {
+            for (String skill : req.skills) {
+                addIndentedText(doc, "• " + skill);
+            }
+        }
 
-        // 5. Projects section
+        // 5. Projects
         addSectionTitle(doc, "PROJECTS");
-        if (req.projects != null) {
+        if (req.projects != null && !req.projects.isEmpty()) {
             for (ResumeRequest.Project p : req.projects) {
                 addIndentedBold(doc, p.title);
                 addIndentedText(doc, p.description, 600);
             }
         }
 
-        // Optional horizontal line before Hobbies
+        // 6. Optional horizontal line
         XWPFParagraph hr = doc.createParagraph();
         hr.setBorderBottom(Borders.SINGLE);
         hr.setSpacingBefore(200);
         hr.setSpacingAfter(200);
 
-        // 6. Hobbies & Clubs
+        // 7. Hobbies
         if (req.hobbies != null && !req.hobbies.isEmpty()) {
             addSectionTitle(doc, "HOBBIES & CLUBS");
             for (String hobby : req.hobbies) {
@@ -72,7 +71,6 @@ public class ResumeService {
             }
         }
 
-        // 7. Export
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             doc.write(baos);
             return baos.toByteArray();
