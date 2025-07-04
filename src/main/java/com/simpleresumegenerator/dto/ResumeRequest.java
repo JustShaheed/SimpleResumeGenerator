@@ -34,6 +34,9 @@ public class ResumeRequest {
     @Valid
     public List<Project> projects;
 
+    @Valid
+    public List<@NotBlank String> certifications;
+
     public List<String> hobbies;
 
     public static class School {

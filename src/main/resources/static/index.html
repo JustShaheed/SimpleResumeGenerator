@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +8,7 @@
 </head>
 <body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
 <div class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8">
-  <h1 class="text-3xl font-bold text-center mb-6">Resume Generator</h1>
+  <h1 class="text-3xl font-bold text-center mb-6">Simple Resume Generator</h1>
   <form id="resumeForm" class="space-y-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <label class="block">
@@ -38,7 +37,6 @@
       <input name="targetJob" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
     </label>
 
-
     <fieldset class="border border-gray-200 rounded-lg p-4">
       <legend class="text-gray-700 font-semibold">School Info</legend>
       <div id="schoolsContainer">
@@ -65,17 +63,17 @@
       <input name="skills" placeholder="Communication, Teamwork, Excel" class="mt-1 block w-full border border-gray-300 rounded-lg p-2"/>
     </label>
 
-
     <div class="block">
       <span class="text-gray-700 font-semibold">Projects</span>
       <div id="projectsContainer" class="space-y-4 mt-2"></div>
       <button type="button" id="addProject" class="bg-green-600 text-white px-4 py-1 rounded mt-2">Add Project</button>
     </div>
-    <label class="block hidden">
-      <span class="text-gray-700">Projects (JSON array)</span>
 
-      <textarea name="projects" rows="3" placeholder='[{"title":"X","description":"Y"}]' class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
-    </label>
+    <div class="block">
+      <span class="text-gray-700 font-semibold">Certifications</span>
+      <div id="certificationsContainer" class="space-y-4 mt-2"></div>
+      <button type="button" id="addCertification" class="bg-green-600 text-white px-4 py-1 rounded mt-2">Add Certification</button>
+    </div>
 
     <label class="block">
       <span class="text-gray-700">Hobbies (comma-separated)</span>
@@ -93,7 +91,6 @@
     e.preventDefault();
     const form = e.target;
 
-    // Extract schools
     const schools = [];
     document.querySelectorAll('.school-entry').forEach(entry => {
       const name = entry.querySelector('input[name*="name"]').value;
@@ -104,7 +101,6 @@
       }
     });
 
-    // Extract projects
     const projects = [];
     document.querySelectorAll('.project-entry').forEach(entry => {
       const title = entry.querySelector('input[name*="title"]').value;
@@ -114,15 +110,22 @@
       }
     });
 
+    const certifications = [];
+    document.querySelectorAll('.certification-entry input').forEach(entry => {
+      const cert = entry.value.trim();
+      if (cert) certifications.push(cert);
+    });
+
     const payload = {
       name: form.name.value,
       phone: form.phone.value,
       email: form.email.value,
       city: form.city.value,
       targetJob: form.targetJob.value,
-      school: schools,  // <-- fixed from `schools`
+      school: schools,
       skills: form.skills.value.split(',').map(s => s.trim()).filter(Boolean),
       projects,
+      certifications,
       hobbies: form.hobbies.value.split(',').map(s => s.trim()).filter(Boolean)
     };
 
@@ -144,29 +147,28 @@
     a.click();
     URL.revokeObjectURL(url);
   });
-</script>
 
-
-<script>
   document.addEventListener('DOMContentLoaded', () => {
+    let schoolCount = 1;
+
     function createSchoolFieldSet(index) {
       const div = document.createElement('div');
       div.className = 'school-entry space-y-2 border border-gray-300 rounded-lg p-4 mt-2';
       div.innerHTML = `
-      <label class="block">
-        <span class="text-gray-700">School Name</span>
-        <input name="school[${index}].name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
-      </label>
-      <label class="block">
-        <span class="text-gray-700">Degree</span>
-        <input name="school[${index}].degree" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
-      </label>
-      <label class="block">
-        <span class="text-gray-700">Graduation</span>
-        <input name="school[${index}].graduation" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
-      </label>
-      <button type="button" class="remove-school bg-red-500 text-white px-3 py-1 rounded">Remove</button>
-    `;
+        <label class="block">
+          <span class="text-gray-700">School Name</span>
+          <input name="school[${index}].name" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+        </label>
+        <label class="block">
+          <span class="text-gray-700">Degree</span>
+          <input name="school[${index}].degree" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+        </label>
+        <label class="block">
+          <span class="text-gray-700">Graduation</span>
+          <input name="school[${index}].graduation" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+        </label>
+        <button type="button" class="remove-school bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+      `;
       return div;
     }
 
@@ -174,46 +176,62 @@
       const div = document.createElement('div');
       div.className = 'project-entry space-y-2 border border-gray-300 rounded-lg p-4 mt-2';
       div.innerHTML = `
-      <label class="block">
-        <span class="text-gray-700">Project Title</span>
-        <input name="projects[].title" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
-      </label>
-      <label class="block">
-        <span class="text-gray-700">Description</span>
-        <textarea name="projects[].description" rows="2" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
-      </label>
-      <button type="button" class="remove-project bg-red-500 text-white px-3 py-1 rounded">Remove</button>
-    `;
+        <label class="block">
+          <span class="text-gray-700">Project Title</span>
+          <input name="projects[].title" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+        </label>
+        <label class="block">
+          <span class="text-gray-700">Description</span>
+          <textarea name="projects[].description" rows="2" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
+        </label>
+        <button type="button" class="remove-project bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+      `;
       return div;
     }
 
-    const schoolsContainer = document.getElementById('schoolsContainer');
-    const addSchoolBtn = document.getElementById('addSchool');
+    function createCertificationFieldSet() {
+      const div = document.createElement('div');
+      div.className = 'certification-entry space-y-2 border border-gray-300 rounded-lg p-4 mt-2';
+      div.innerHTML = `
+        <label class="block">
+          <span class="text-gray-700">Certification</span>
+          <input name="certifications[]" required class="mt-1 block w-full border border-gray-300 rounded-lg p-2" />
+        </label>
+        <button type="button" class="remove-certification bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+      `;
+      return div;
+    }
 
-    let schoolCount = 1;
-
-    addSchoolBtn.addEventListener('click', () => {
+    document.getElementById('addSchool').addEventListener('click', () => {
       const entry = createSchoolFieldSet(schoolCount++);
-      schoolsContainer.appendChild(entry);
+      document.getElementById('schoolsContainer').appendChild(entry);
     });
 
-    schoolsContainer.addEventListener('click', e => {
+    document.getElementById('schoolsContainer').addEventListener('click', e => {
       if (e.target.classList.contains('remove-school')) {
         e.target.closest('.school-entry').remove();
       }
     });
 
-    const projectsContainer = document.getElementById('projectsContainer');
-    const addProjectBtn = document.getElementById('addProject');
-
-    addProjectBtn.addEventListener('click', () => {
+    document.getElementById('addProject').addEventListener('click', () => {
       const entry = createProjectFieldSet();
-      projectsContainer.appendChild(entry);
+      document.getElementById('projectsContainer').appendChild(entry);
     });
 
-    projectsContainer.addEventListener('click', e => {
+    document.getElementById('projectsContainer').addEventListener('click', e => {
       if (e.target.classList.contains('remove-project')) {
         e.target.closest('.project-entry').remove();
+      }
+    });
+
+    document.getElementById('addCertification').addEventListener('click', () => {
+      const entry = createCertificationFieldSet();
+      document.getElementById('certificationsContainer').appendChild(entry);
+    });
+
+    document.getElementById('certificationsContainer').addEventListener('click', e => {
+      if (e.target.classList.contains('remove-certification')) {
+        e.target.closest('.certification-entry').remove();
       }
     });
   });

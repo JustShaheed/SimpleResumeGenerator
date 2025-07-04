@@ -3,7 +3,6 @@ package com.simpleresumegenerator.service;
 import com.simpleresumegenerator.dto.ResumeRequest;
 import org.apache.poi.xwpf.usermodel.*;
 import org.springframework.stereotype.Service;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -18,54 +17,54 @@ public class ResumeService {
         header.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun run = header.createRun();
         run.setBold(true);
-        run.setFontSize(18);
+        run.setFontSize(16);
         run.setText(req.name);
         run.addBreak();
-        run.setBold(false);
         run.setFontSize(11);
+        run.setBold(false);
         run.setText(req.phone + " | " + req.email + " | " + req.city);
 
         // 2. Objective
-        XWPFParagraph obj = doc.createParagraph();
-        obj.setSpacingBefore(200);
-        XWPFRun objRun = obj.createRun();
-        objRun.setItalic(true);
-        objRun.setText("Objective: " + req.targetJob);
+        addSectionTitle(doc, "OBJECTIVE");
+        addIndentedText(doc, req.targetJob);
 
         // 3. Education
-        addSectionTitle(doc, "EDUCATION");
-        if (req.school != null) {
+        if (req.school != null && !req.school.isEmpty()) {
+            addSectionTitle(doc, "EDUCATION");
             for (ResumeRequest.School s : req.school) {
-                addIndentedText(doc, String.format("%s, %s (%s)", s.name, s.degree, s.graduation));
+                addIndentedBold(doc, s.name);
+                addIndentedText(doc, s.degree + " — " + s.graduation, 600);
             }
         }
 
         // 4. Skills
-        addSectionTitle(doc, "SKILLS");
         if (req.skills != null && !req.skills.isEmpty()) {
+            addSectionTitle(doc, "SKILLS");
             for (String skill : req.skills) {
                 addIndentedText(doc, "• " + skill);
             }
         }
 
         // 5. Projects
-        addSectionTitle(doc, "PROJECTS");
         if (req.projects != null && !req.projects.isEmpty()) {
+            addSectionTitle(doc, "PROJECTS");
             for (ResumeRequest.Project p : req.projects) {
                 addIndentedBold(doc, p.title);
                 addIndentedText(doc, p.description, 600);
             }
         }
 
-        // 6. Optional horizontal line
-        XWPFParagraph hr = doc.createParagraph();
-        hr.setBorderBottom(Borders.SINGLE);
-        hr.setSpacingBefore(200);
-        hr.setSpacingAfter(200);
+        // 6. Certifications
+        if (req.certifications != null && !req.certifications.isEmpty()) {
+            addSectionTitle(doc, "CERTIFICATIONS");
+            for (String cert : req.certifications) {
+                addIndentedText(doc, "• " + cert);
+            }
+        }
 
         // 7. Hobbies
         if (req.hobbies != null && !req.hobbies.isEmpty()) {
-            addSectionTitle(doc, "HOBBIES & CLUBS");
+            addSectionTitle(doc, "HOBBIES");
             for (String hobby : req.hobbies) {
                 addIndentedText(doc, hobby);
             }
@@ -93,6 +92,7 @@ public class ResumeService {
     private void addIndentedText(XWPFDocument doc, String text, int indent) {
         XWPFParagraph p = doc.createParagraph();
         p.setIndentationLeft(indent);
+        p.setSpacingAfter(100);
         p.createRun().setText(text);
     }
 
