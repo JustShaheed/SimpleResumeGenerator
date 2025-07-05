@@ -12,7 +12,7 @@ A lightweight Spring Boot application that generates a Word (`.docx`) resume bas
 
 ## Tech Stack
 
-- **Language & Framework**: Java 17, Spring Boot 3.x
+- **Language & Framework**: Java 24, Spring Boot 3.x
 - **Document Generation**: Apache POI (`poi-ooxml`)
 - **Front-End**: Static HTML + Tailwind CSS (via CDN)
 - **Build Tool**: Maven with Wrapper (`mvnw`)
@@ -22,7 +22,7 @@ A lightweight Spring Boot application that generates a Word (`.docx`) resume bas
 
 ### Prerequisites
 
-- JDK 17 installed and `JAVA_HOME` configured
+- JDK 24 installed and `JAVA_HOME` configured
 - Internet access for loading Tailwind CSS CDN
 
 ### Build & Run
