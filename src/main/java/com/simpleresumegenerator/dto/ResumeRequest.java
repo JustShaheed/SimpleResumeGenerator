@@ -45,6 +45,17 @@ public class ResumeRequest {
         @NotBlank public String graduation; // e.g., "May 2025"
     }
 
+    public static class Experience {
+        @NotBlank public String company;
+        @NotBlank public String title;
+        @NotBlank public String duration; // e.g. "Jan 2022 - May 2024"
+        @NotBlank public String description;
+    }
+
+    @Valid
+    public List<Experience> experience;
+
+
     public static class Project {
         @NotBlank public String title;
         @NotBlank public String description;
