@@ -62,11 +62,11 @@ A lightweight Spring Boot application that generates a Word (`.docx`) resume bas
 - **Headers**: `Content-Type: application/json`
 - **Body**: JSON payload matching the `ResumeRequest` model, for example:
 ```json
-  {
+{
    "name": "Shaheed Abdillah",
-   "phone": "+65 9018 7453",
+   "phone": "+65 0000 0000",
    "email": "shaheedabdillah@outlook.com",
-   "city": "Singapore 760354",
+   "city": "Singapore",
    "targetJob": "IT Support and Automation Specialist with 2.5 years of experience at Infosys, supporting backend operations for Mercedes-Benz. Proficient in Python scripting for automation, incident management via ServiceNow, and collaborating across international markets. Currently upskilling in AWS and DevOps tools with a focus on CI/CD and infrastructure automation.",
    "school": [
       {
@@ -165,7 +165,7 @@ A lightweight Spring Boot application that generates a Word (`.docx`) resume bas
       "Coding personal projects",
       "Learning DevOps tools"
    ]
-  }
+}
 ```
 - **Response**: A `.docx` file (`Content-Disposition: attachment; filename=resume.docx`)
 
