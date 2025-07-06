@@ -165,7 +165,7 @@ A lightweight Spring Boot application that generates a Word (`.docx`) resume bas
       "Coding personal projects",
       "Learning DevOps tools"
    ]
-}
+  }
 ```
 - **Response**: A `.docx` file (`Content-Disposition: attachment; filename=resume.docx`)
 
